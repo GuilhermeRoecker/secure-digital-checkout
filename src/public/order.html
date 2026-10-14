@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#edf3f1">
+    <title>Status do pedido · Secure Digital Checkout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/api.js" defer></script>
+    <script src="/js/order.js" defer></script>
+  </head>
+  <body class="subpage">
+    <header class="topbar">
+      <a class="wordmark" href="/" aria-label="Secure Digital Checkout, início">
+        <span class="wordmark-icon" aria-hidden="true">S</span>
+        <span>Secure <strong>Digital</strong></span>
+      </a>
+      <a class="admin-link" href="/admin/orders">Pedidos</a>
+    </header>
+    <main class="subpage-main">
+      <div class="page-heading">
+        <p class="eyebrow">ACOMPANHAMENTO</p>
+        <h1>Status do pedido</h1>
+        <p id="order-load-message" role="status">Consultando pedido…</p>
+      </div>
+      <section id="order-status-view" class="status-view" hidden>
+        <div class="status-order-heading">
+          <div><p class="eyebrow">PEDIDO</p><h2 id="status-order-number"></h2></div>
+          <span id="status-order-state" class="status-tag"></span>
+        </div>
+        <dl class="order-summary status-summary">
+          <div><dt>Produto</dt><dd id="status-product"></dd></div>
+          <div><dt>Valor</dt><dd id="status-amount"></dd></div>
+          <div><dt>Criado em</dt><dd id="status-created"></dd></div>
+        </dl>
+        <div class="status-tracks">
+          <section class="status-track">
+            <span class="track-mark" aria-hidden="true">◷</span>
+            <div><p class="eyebrow">PAGAMENTO</p><h3 id="payment-status">Aguardando</h3><p id="payment-description">Aguardando confirmação financeira do Asaas.</p></div>
+          </section>
+          <section class="status-track">
+            <span class="track-mark security" aria-hidden="true">◎</span>
+            <div><p class="eyebrow">SEGURANÇA</p><h3 id="security-status">3DS ainda não implementado</h3><p id="security-description">Consulte o modelo de integração deste pedido.</p></div>
+          </section>
+          <section class="status-track">
+            <span class="track-mark locked" aria-hidden="true">▣</span>
+            <div><p class="eyebrow">ENTREGA</p><h3 id="delivery-status">Bloqueada</h3><p>O produto só poderá ser liberado após confirmação segura pelo backend.</p></div>
+          </section>
+        </div>
+        <section id="delivery-code-panel" class="delivery-code-panel" hidden>
+          <p class="eyebrow">GIFT CARD DIGITAL</p>
+          <code id="delivery-code"></code>
+        </section>
+        <section class="timeline-section">
+          <p class="eyebrow">ATIVIDADE DO PEDIDO</p>
+          <ol id="order-timeline" class="event-timeline"></ol>
+        </section>
+      </section>
+      <a class="back-link" href="/">← Voltar ao checkout</a>
+    </main>
+    <footer class="site-footer"><span>Secure Digital Checkout</span><span>Asaas Sandbox · Demonstração</span></footer>
+  </body>
+</html>

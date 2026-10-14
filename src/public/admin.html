@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#edf3f1">
+    <title>Pedidos · Secure Digital Checkout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/api.js" defer></script>
+    <script src="/js/admin.js" defer></script>
+  </head>
+  <body class="subpage admin-page">
+    <header class="topbar">
+      <a class="wordmark" href="/" aria-label="Secure Digital Checkout, início">
+        <span class="wordmark-icon" aria-hidden="true">S</span>
+        <span>Secure <strong>Digital</strong></span>
+      </a>
+      <a class="admin-link" href="/">Checkout</a>
+    </header>
+    <main class="admin-main">
+      <div class="page-heading admin-heading">
+        <div><p class="eyebrow">SANDBOX · OPERAÇÃO</p><h1>Pedidos</h1></div>
+        <p id="orders-message" role="status">Carregando pedidos…</p>
+      </div>
+      <div class="table-scroll">
+        <table class="orders-table">
+          <thead><tr>
+            <th>Pedido</th><th>Fluxo</th><th>Produto</th><th>Valor</th><th>Checkout</th><th>Pagamento</th><th>Status</th><th>Entrega</th><th>Criado em</th>
+          </tr></thead>
+          <tbody id="orders-body"></tbody>
+        </table>
+      </div>
+      <section id="admin-order-detail" class="admin-detail" aria-live="polite" hidden>
+        <div class="detail-heading"><div><p class="eyebrow">FLUXO DO PEDIDO</p><h2 id="detail-order-number"></h2></div><a id="detail-status-link" class="text-link" href="#">Abrir status</a></div>
+        <dl class="order-summary admin-summary">
+          <div><dt>Fluxo</dt><dd id="detail-customer"></dd></div>
+          <div><dt>Produto</dt><dd id="detail-product"></dd></div>
+          <div><dt>Valor</dt><dd id="detail-amount"></dd></div>
+          <div><dt>Status</dt><dd id="detail-status"></dd></div>
+          <div><dt>Entrega</dt><dd id="detail-delivery-status"></dd></div>
+        </dl>
+        <a id="detail-checkout-link" class="checkout-link" href="#" target="_blank" rel="noopener noreferrer" hidden>Abrir checkout Asaas <span aria-hidden="true">↗</span></a>
+        <ol id="admin-timeline" class="event-timeline"></ol>
+      </section>
+    </main>
+    <footer class="site-footer"><span>Secure Digital Checkout</span><span>Ferramenta interna de demonstração</span></footer>
+  </body>
+</html>

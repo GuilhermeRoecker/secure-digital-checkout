@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#edf3f1">
+    <title>Secure Digital Checkout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/api.js" defer></script>
+    <script src="/js/direct-payment.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="wordmark" href="/" aria-label="Secure Digital Checkout, início">
+        <span class="wordmark-icon" aria-hidden="true">S</span>
+        <span>Secure <strong>Digital</strong></span>
+      </a>
+      <span class="sandbox-label"><span aria-hidden="true"></span> Ambiente de demonstração</span>
+      <a class="admin-link" href="/admin/orders">Pedidos</a>
+    </header>
+
+    <main class="checkout-layout">
+      <section class="product-panel" aria-labelledby="product-name">
+        <p class="eyebrow">PRODUTO DIGITAL</p>
+        <h1 id="product-name">Um presente.<br>Infinitas escolhas.</h1>
+        <p class="product-description">Um jeito simples de presentear com liberdade para escolher.</p>
+
+        <div class="gift-art" role="img" aria-label="Cartão-presente digital ilustrado">
+          <div class="gift-art-glow"></div>
+          <div class="gift-card">
+            <span class="gift-card-mark">S / D</span>
+            <span class="gift-card-label">PRESENTEIE<br>DO SEU JEITO</span>
+            <span class="gift-card-value">R$ 100</span>
+            <span class="gift-card-spark" aria-hidden="true">✳</span>
+          </div>
+          <span class="art-caption">GIFT CARD DIGITAL · EDIÇÃO 001</span>
+        </div>
+
+        <div class="product-summary">
+          <div>
+            <h2>Gift Card Digital</h2>
+            <p>Entrega digital após confirmação do pagamento.</p>
+          </div>
+          <strong>R$ 100,00</strong>
+        </div>
+      </section>
+
+      <section class="form-panel" aria-labelledby="form-title">
+        <div class="form-heading">
+          <p class="eyebrow">FINALIZAR PEDIDO</p>
+          <h2 id="form-title">Cartão + 3D Secure</h2>
+          <p>Use somente dados fictícios do Sandbox. Comprador e titular devem ser a mesma pessoa.</p>
+        </div>
+
+        <nav class="integration-options" aria-label="Forma de integração">
+          <a href="/">Checkout</a>
+          <a href="/payments/direct" aria-current="page">3DS</a>
+        </nav>
+
+        <form id="direct-payment-form">
+          <fieldset class="form-section">
+            <legend>Dados do comprador e titular</legend>
+            <label for="name">Nome</label>
+            <input id="name" name="name" type="text" autocomplete="name" minlength="2" maxlength="100" required>
+
+            <label for="cpfCnpj">CPF/CNPJ</label>
+            <input id="cpfCnpj" name="cpfCnpj" type="text" inputmode="numeric" autocomplete="off" maxlength="18" required>
+
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email" autocomplete="email" maxlength="254" required>
+
+            <label for="phone">Telefone</label>
+            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" required>
+          </fieldset>
+
+          <fieldset class="form-section address-fields">
+            <legend>Endereço</legend>
+            <label for="postalCode">CEP</label>
+            <input id="postalCode" name="postalCode" type="text" inputmode="numeric" autocomplete="postal-code" placeholder="00000-000" maxlength="9" pattern="[0-9]{5}-?[0-9]{3}" required>
+
+            <label for="address">Endereço</label>
+            <input id="address" name="address" type="text" autocomplete="address-line1" required>
+
+            <label for="addressNumber">Número</label>
+            <input id="addressNumber" name="addressNumber" type="number" inputmode="numeric" min="0" max="2147483647" step="1" required>
+
+            <label for="province">Bairro</label>
+            <input id="province" name="province" type="text" autocomplete="address-level3" required>
+          </fieldset>
+
+          <fieldset class="form-section address-fields">
+            <legend>Dados do cartão de teste</legend>
+            <label for="holderName">Nome impresso no cartão</label>
+            <input id="holderName" type="text" autocomplete="off" minlength="2" maxlength="100" required>
+            <label for="cardNumber">Número do cartão de teste</label>
+            <input id="cardNumber" type="text" inputmode="numeric" autocomplete="off" minlength="13" maxlength="23" required>
+            <label for="expiryMonth">Mês de validade (MM)</label>
+            <input id="expiryMonth" type="text" inputmode="numeric" autocomplete="off" pattern="0[1-9]|1[0-2]" maxlength="2" required>
+            <label for="expiryYear">Ano de validade (AAAA)</label>
+            <input id="expiryYear" type="text" inputmode="numeric" autocomplete="off" pattern="20[0-9]{2}" maxlength="4" required>
+            <label for="ccv">Código de segurança</label>
+            <input id="ccv" type="password" inputmode="numeric" autocomplete="off" minlength="3" maxlength="4" pattern="[0-9]{3,4}" required>
+          </fieldset>
+          <section class="form-status" aria-label="Informações sobre 3DS">
+            Enviaremos informações do navegador para a autenticação 3DS.
+            No Sandbox, o Asaas aprova a autenticação automaticamente e não exibe o desafio do emissor.
+          </section>
+          <button id="buy-button" class="buy-button" type="submit">
+            <span class="button-label">Enviar pagamento de teste</span>
+            <span class="button-spinner" aria-hidden="true"></span>
+            <span aria-hidden="true">→</span>
+          </button>
+        </form>
+        <section id="direct-payment-result" class="order-result" aria-live="polite" hidden>
+          <h2>Pagamento direto</h2>
+          <p id="direct-payment-message" class="result-message"></p>
+          <a id="direct-order-link" class="order-detail-link" href="#" hidden>Acompanhar pedido</a>
+          <a id="direct-challenge-link" class="checkout-link" href="#" hidden>Continuar autenticação no emissor</a>
+        </section>
+        <p class="secure-note"><span aria-hidden="true">●</span> PoC Sandbox. Não utilize cartão real. A entrega depende da confirmação por webhook.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Secure Digital Checkout</span>
+      <span>Prova de conceito · Asaas Sandbox</span>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#edf3f1">
+    <title>Secure Digital Checkout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/api.js" defer></script>
+    <script src="/js/checkout.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="wordmark" href="/" aria-label="Secure Digital Checkout, início">
+        <span class="wordmark-icon" aria-hidden="true">S</span>
+        <span>Secure <strong>Digital</strong></span>
+      </a>
+      <span class="sandbox-label"><span aria-hidden="true"></span> Ambiente de demonstração</span>
+      <a class="admin-link" href="/admin/orders">Pedidos</a>
+    </header>
+
+    <main class="checkout-layout">
+      <section class="product-panel" aria-labelledby="product-name">
+        <p class="eyebrow">PRODUTO DIGITAL</p>
+        <h1 id="product-name">Um presente.<br>Infinitas escolhas.</h1>
+        <p class="product-description">Um jeito simples de presentear com liberdade para escolher.</p>
+
+        <div class="gift-art" role="img" aria-label="Cartão-presente digital ilustrado">
+          <div class="gift-art-glow"></div>
+          <div class="gift-card">
+            <span class="gift-card-mark">S / D</span>
+            <span class="gift-card-label">PRESENTEIE<br>DO SEU JEITO</span>
+            <span class="gift-card-value">R$ 100</span>
+            <span class="gift-card-spark" aria-hidden="true">✳</span>
+          </div>
+          <span class="art-caption">GIFT CARD DIGITAL · EDIÇÃO 001</span>
+        </div>
+
+        <div class="product-summary">
+          <div>
+            <h2>Gift Card Digital</h2>
+            <p>Entrega digital após confirmação do pagamento.</p>
+          </div>
+          <strong>R$ 100,00</strong>
+        </div>
+      </section>
+
+      <section class="form-panel" aria-labelledby="form-title">
+        <div class="form-heading">
+          <p class="eyebrow">FINALIZAR PEDIDO</p>
+          <h2 id="form-title">Seus dados</h2>
+          <p>Preencha os dados para seguir ao checkout seguro.</p>
+        </div>
+
+        <nav class="integration-options" aria-label="Forma de integração">
+          <a href="/" aria-current="page">Checkout</a>
+          <a href="/payments/direct">3DS</a>
+        </nav>
+
+        <form id="checkout-form">
+          <fieldset class="form-section">
+            <legend>Dados pessoais</legend>
+            <label for="name">Nome</label>
+            <input id="name" name="name" type="text" autocomplete="name" minlength="2" maxlength="100" required>
+
+            <label for="cpfCnpj">CPF/CNPJ</label>
+            <input id="cpfCnpj" name="cpfCnpj" type="text" inputmode="numeric" autocomplete="off" maxlength="18" required>
+
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email" autocomplete="email" maxlength="254" required>
+
+            <label for="phone">Telefone</label>
+            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" required>
+          </fieldset>
+
+          <fieldset class="form-section address-fields">
+            <legend>Endereço</legend>
+            <label for="postalCode">CEP</label>
+            <input id="postalCode" name="postalCode" type="text" inputmode="numeric" autocomplete="postal-code" placeholder="00000-000" maxlength="9" pattern="[0-9]{5}-?[0-9]{3}" required>
+
+            <label for="address">Endereço</label>
+            <input id="address" name="address" type="text" autocomplete="address-line1" required>
+
+            <label for="addressNumber">Número</label>
+            <input id="addressNumber" name="addressNumber" type="number" inputmode="numeric" min="0" max="2147483647" step="1" required>
+
+            <label for="province">Bairro</label>
+            <input id="province" name="province" type="text" autocomplete="address-level3" required>
+          </fieldset>
+
+          <button id="buy-button" class="buy-button" type="submit">
+            <span class="button-label">Comprar</span>
+            <span class="button-spinner" aria-hidden="true"></span>
+            <span aria-hidden="true">→</span>
+          </button>
+        </form>
+        <section id="checkout-result" class="order-result" aria-live="polite" hidden>
+          <p class="eyebrow">ACOMPANHAMENTO DO PEDIDO</p>
+          <h2 id="result-title">Processando sua compra</h2>
+          <p id="result-message" class="result-message"></p>
+          <ol id="order-steps" class="order-steps">
+            <li data-step="data"><span class="step-icon"></span><span>Dados recebidos</span></li>
+            <li data-step="order"><span class="step-icon"></span><span>Pedido criado</span></li>
+            <li data-step="checkout"><span class="step-icon"></span><span>Checkout Asaas criado</span></li>
+            <li data-step="payment"><span class="step-icon"></span><span>Pagamento confirmado</span></li>
+            <li data-step="delivery"><span class="step-icon"></span><span>Produto liberado</span></li>
+          </ol>
+          <dl id="order-summary" class="order-summary" hidden>
+            <div><dt>Pedido</dt><dd id="result-order"></dd></div>
+            <div><dt>Valor</dt><dd id="result-amount"></dd></div>
+            <div><dt>Status</dt><dd id="result-status"></dd></div>
+          </dl>
+          <a id="checkout-link" class="checkout-link" href="#" target="_blank" rel="noopener noreferrer" hidden>
+            Continuar para pagamento seguro <span aria-hidden="true">↗</span>
+          </a>
+          <a id="order-detail-link" class="order-detail-link" href="#" hidden>Ver status deste pedido</a>
+          <button id="retry-button" class="retry-button" type="button" hidden>Tentar novamente</button>
+        </section>
+        <p class="secure-note"><span aria-hidden="true">●</span> Pagamento processado no ambiente seguro do Asaas Sandbox.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Secure Digital Checkout</span>
+      <span>Prova de conceito · Asaas Sandbox</span>
+    </footer>
+  </body>
+</html>

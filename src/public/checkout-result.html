@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#edf3f1">
+    <title>Retorno do checkout · Secure Digital Checkout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/api.js" defer></script>
+    <script src="/js/checkout-result.js" defer></script>
+  </head>
+  <body class="subpage">
+    <header class="topbar">
+      <a class="wordmark" href="/" aria-label="Secure Digital Checkout, início">
+        <span class="wordmark-icon" aria-hidden="true">S</span>
+        <span>Secure <strong>Digital</strong></span>
+      </a>
+      <a class="admin-link" href="/admin/orders">Pedidos</a>
+    </header>
+    <main class="subpage-main">
+      <section class="status-view callback-view">
+        <p class="eyebrow">RETORNO DO CHECKOUT</p>
+        <h1 id="callback-title">Pagamento enviado</h1>
+        <p id="callback-message" role="status">Estamos aguardando a confirmação do provedor.</p>
+        <dl class="order-summary">
+          <div><dt>Pedido</dt><dd id="callback-order">Consultando…</dd></div>
+          <div><dt>Pagamento</dt><dd id="callback-payment">Aguardando confirmação</dd></div>
+          <div><dt>Entrega</dt><dd id="callback-delivery">Bloqueada</dd></div>
+        </dl>
+        <section id="callback-delivery-code-panel" class="delivery-code-panel" hidden>
+          <p class="eyebrow">GIFT CARD DIGITAL</p>
+          <code id="callback-delivery-code"></code>
+        </section>
+        <a id="callback-order-link" class="order-detail-link" href="#" hidden>Acompanhar pedido</a>
+      </section>
+      <a class="back-link" href="/">← Voltar ao checkout</a>
+    </main>
+    <footer class="site-footer"><span>Secure Digital Checkout</span><span>Asaas Sandbox · Demonstração</span></footer>
+  </body>
+</html>
