@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css">
     <script src="/js/api.js" defer></script>
+    <script src="/js/form-presets.js" defer></script>
     <script src="/js/direct-payment.js" defer></script>
   </head>
   <body>
@@ -61,6 +62,14 @@
         </nav>
 
         <form id="direct-payment-form">
+          <div class="form-presets" role="group" aria-label="Preenchimento de dados de teste">
+            <p>Preencha os dados de teste com um clique.</p>
+            <div class="preset-actions">
+              <button class="preset-button" type="button" data-form-preset="approve">Aprova</button>
+              <button class="preset-button" type="button" data-form-preset="reject">Rejeita</button>
+            </div>
+            <p class="preset-status" role="status" aria-live="polite"></p>
+          </div>
           <fieldset class="form-section">
             <legend>Dados do comprador e titular</legend>
             <label for="name">Nome</label>
